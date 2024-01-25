@@ -1,0 +1,45 @@
+ENVIRONMENT
+Indoor
+Outdoor
+
+PRODUCT FAMILY
+Antbuc
+Picobuc
+Femtobuc
+Rack mount
+
+
+PRODUCT TYPE
+SSPA
+SSPB
+BUC
+LNB
+Frequency Converter
+
+INPUT FREQUENCY
+Ka-Band
+Ku-Band
+C-Band
+L-Band
+IF (70/140 MHz)
+
+OUTPUT FREQUENCY
+Ka-Band
+Ku-Band
+C-Band
+L-Band
+IF (70/140 MHz)
+
+OUTPUT POWER
+> 1 KW
+100 - 400 W
+500 - 900 W
+< 100
+
+SUPPLY VOLTAGE
+AC
+DC
+
+OUTPUT DEVICE
+GaAs
+GaN

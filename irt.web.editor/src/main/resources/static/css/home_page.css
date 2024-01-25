@@ -1,0 +1,34 @@
+ @import "./banner.css";
+ @import "./button.css";
+ @import "./carousel.css";
+ 
+ /* .video-container {
+    position: relative;
+    min-height: 400px
+}
+#video-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.9;
+} */
+.container-fluid h4{
+  color: white;
+}
+textarea{
+  border: 1px solid rgb(232, 231, 231);
+  border-radius: 5px;
+}
+.editor_segment{
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 15px;
+}
+.btn{
+	color: #ffc107;
+}
+.pre-wrap{
+	white-space: pre-wrap;
+}

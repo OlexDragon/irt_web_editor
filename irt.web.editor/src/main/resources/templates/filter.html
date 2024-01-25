@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" th:replace="home_page :: css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+		<div class="container-fluid" th:replace="menu :: menu">
+			<a id="nb_filteru" class="nav-item nav-link" href="filter.html" th:href="@{/filter}">Filters</a>
+		</div>
+    </nav>
+ 	<div class="container-fluid ">
+<!-- Menu Editor -->
+    <div class="row mb-3">
+   		<div class="col form-floating">
+     		<select id="groupSelect" class="form-select">
+    			<option value="-1">Product Filter Group ...</option>
+    			<option th:each="group : ${groups}" 
+    					th:value="${group.id}" 
+    					th:text="${group.name}" 
+    					data-th-data-description="${group.description}" 
+    					data-th-data-order="${group.filterOrder}" 
+    					data-th-data-radio="${group.radio}" 
+    					data-th-data-active="${group.active}"></option>
+    		</select >
+  			<label for="groupSelect">Select a Filter Group to change it.</label>
+    	</div>
+    </div>
+	<h4>Filter Editor</h4>
+    <div class="row mb-3">
+   		<div class="col form-floating">
+     		<select id="filterSelect" class="form-select">
+     		<th:block th:fragment="filter_options">
+    			<option value="-1">Filter ...</option>
+    			<option th:each="filter : ${filters}" 
+    					th:value="${filter.id}" 
+    					th:text="${filter.name}" 
+    					data-th-data-description="${filter.description}" 
+    					data-th-data-order="${filter.filterOrder}" 
+    					data-th-data-radio="${filter.radio}" 
+    					data-th-data-active="${filter.active}"></option>
+ 			</th:block>
+    		</select >
+  			<label for="menuSelect">To edit a Filter, select the Filter Group.</label>
+    	</div>
+		<div class="col form-floating">
+  			<input id="newFilterNeme" type="text" class="form-control" placeholder="Menu Name" disabled>
+  			<label for="newFilterNeme">Filter Name</label>
+   		</div>
+		<div class="col form-floating">
+  			<input id="newDescription" type="text" class="form-control" placeholder="Description" disabled>
+  			<label for="newDescription">Description</label>
+   		</div>
+		<div class="col-1 form-floating">
+  			<input id="newFilterOrder"  type="number" class="form-control" placeholder="Order" value="0" disabled>
+  			<label for="newFilterOrder">Order</label>
+   		</div>
+		<div class="col-auto">
+  			<input id="newIsRadio"  type="checkbox" class="btn-check" autocomplete="off">
+  			<label class="btn btn-outline-success disabled" for="newIsRadio">Radio</label>
+   		</div>
+		<div class="col-auto">
+  			<input id="newFilterActive"  type="checkbox" class="btn-check" autocomplete="off" checked>
+  			<label class="btn btn-outline-success disabled" for="newFilterActive">Active</label>
+   		</div>
+  		<div class="col-1">
+  			<button type="button" id="btnSaveFilter" class="btn btn-outline-secondary form-control disabled">Add Menu</button>
+   		</div>
+   	</div>
+    </div>
+ 	<div id="filterContent" class="container-fluid ">
+	</div>
+
+<th:block th:replace="home_page :: js">
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</th:block>
+    <script src="../static/js/filter.js" th:src="@{'/js/filter.js'}"></script>
+</body>
+</html>
