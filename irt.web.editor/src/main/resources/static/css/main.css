@@ -1,0 +1,107 @@
+
+h1{
+	font-family: var(--font-primary);
+    text-shadow: 3px 3px black;
+}
+h2, h3, h4, h5,h5 p{
+	font-family: var(--font-secondary);
+	color: white;
+}
+.about-btn{
+	min-width: 200px;
+    border: 2px solid rgb(252, 253, 254);
+    color: white;
+}
+ .pre-line{
+	white-space: pre-line;
+}
+  
+.container .card{
+	height: 400px;
+}
+@media (max-width: 768px) {
+	.container .card{
+		height: auto;
+	}   
+}
+  /* detail product */
+  .carousel-control-prev{
+    margin-left: -20px;
+  }
+  .carousel-img{
+    width: 400px;
+  }
+  /* filter form */
+  .filter{
+    font-family: var(--font-primary);
+    margin-bottom: 100px;
+  }
+  .filter h6{
+    font-weight: 600;
+  }
+  .filter .brand{
+    height: auto;
+  }
+
+  /* card-filtre */
+  /* .card-header {
+    border-top: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  } */
+  @media (max-width: 992px) {
+    .filter h6{
+      font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+  .filter h6{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .filter h6{
+    font-size: 12px;
+  }
+  .filter label{
+    font-size: 10px;
+    padding: 0px;
+  }
+  .filter .card-body{
+    padding: 5px;
+  }
+  .filter .form-control{
+    padding: 0px 5px ;
+  }
+}
+@media screen and (max-width: 1600px) {
+	.form-check {
+		padding: 5px 10px;
+		max-width: 200px;
+		font-size: 12px;
+	}
+	.nav-link{
+		font-size: 16px;
+	}
+	.slogan, .btn-oval, .btn-diamond, .dropdown-item{
+		font-size:10px ;
+	}
+}
+/* menu-var3 */
+.bord{
+	border-right: 1px solid rgb(189, 188, 188);  
+}
+.pre-wrap{
+	white-space: pre-wrap;
+}
+  
+   
+   
+   
+   
+   
+
+
+
+
+

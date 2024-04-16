@@ -1,0 +1,6 @@
+div[data-id]{
+	cursor: pointer;
+}
+table{
+	width: 100%; 
+}
