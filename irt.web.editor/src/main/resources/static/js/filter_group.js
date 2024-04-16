@@ -1,5 +1,3 @@
-$('#nb_filter_group').addClass('navbar-brand');
-
 $('#newGroupNeme').on('input', function(){
 	enableSaveButton();
 })

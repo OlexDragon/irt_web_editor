@@ -1,5 +1,3 @@
-$('#nb_products').addClass('navbar-brand');
-
 let $inputProductName 	= $('#inputProductName');
 let $inputPartNumber 	= $('#inputPartNumber');
 let $cbActive 			= $('#cbActive');
@@ -80,7 +78,7 @@ let $button = $('#btnSaveProduct')
 						window.location.reload();
 					})
 					.fail(function(error) {
-						window.console.errorr(error);
+						window.console.error(error);
   					});	
 				});
 

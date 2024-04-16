@@ -246,7 +246,7 @@ public class IrtWebEditorRestController {
 								message = valueType + "- Updated: " + webContent;
 
 							}else {
-								webContent = new WebContent(pageName, nodeId, valueType, value, new VariableContent(nodeId, valueType, value));
+								webContent = new WebContent(pageName, nodeId, valueType, value);
 								message = valueType + "- Incerted: " + webContent;
 							}
 

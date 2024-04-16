@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
-		<div class="container-fluid" th:replace="menu :: menu">
+		<div class="container-fluid" th:replace="menu :: menu('products by filter')">
 			<a id="nb_products_by_filter" class="nav-item nav-link" href="products_by_filter.html" th:href="@{/products_by_filter}">Products By Filter</a>
 		</div>
     </nav>
@@ -58,7 +58,7 @@
  			</tbody>
  		</table>
     		<script type="application/javascript" th:inline="javascript">
-    			var products = [[${products}]];
+    			var products = /*[[${products}]]*/ {};
     		</script>
 	</div>
 <th:block th:replace="home_page :: js">

@@ -1,5 +1,3 @@
-$('#nb_home_page').addClass('navbar-brand');
-
 getDataFromDB();
 
 function getDataFromDB(){
@@ -30,7 +28,7 @@ function getDataFromDB(){
 	})
 	.fail(err=>console.error(err));
 
-// Carousel
+// Get Carousel variables
 	$.post('/rest/page_valiables', {pageName: 'home_slider'}, data=>{
 
 		if(!data)
@@ -171,6 +169,7 @@ let $btnSaveCard = $('#saveCard').click(
 		postValues(toSend);
 
 		$selectedCard = null;
+		$btnAddCard.prop('disabled', true);
 		$btnSaveCard.prop('disabled', true);
 		$btnDeleteCard.prop('disabled', true);
 	});
@@ -233,6 +232,25 @@ $sliderParent.mousemove(
 		$slider.css('margin-left', moveTo);
 	});
 
+$('.card-value').on('input', 
+
+	e=>{
+
+		let $el;
+		switch(e.currentTarget.id){
+			case 'siderCardTitle':
+				$el = $selectedCard.find('h5').text(e.currentTarget.value);
+				break;
+
+			case 'sliderCardDescription':
+				$el = $selectedCard.find('p').text(e.currentTarget.value);
+				break;
+
+			case 'sliderCardLink':
+				$el = $selectedCard.find('h6').text(e.currentTarget.value);
+		}
+	});
+
 function enableButton(element){
 
 	let $segment = $(element).parents('.editor_segment');
@@ -283,7 +301,7 @@ function addCard(titleId, titleValue, descriptionId, descriptionValue, linkId, h
 
 	let $h5 = $('<h5>', {id: titleId, class: 'card-title fw-bold text-sm', text: titleValue});
 	let $p = $('<p>', {id: descriptionId, class: 'card-text text-sm', text: descriptionValue});
-	let $a = $('<a>', {id: linkId,  href: href}).prop('hidden', true);
+	let $a = $('<h6>', {id: linkId,  class: 'card-text text-sm', text: href});
 
 	$selectedCard = $('<div>', {class: 'card home-cardcol-md-3  my-2 slide'})
 
@@ -299,7 +317,7 @@ function addCard(titleId, titleValue, descriptionId, descriptionValue, linkId, h
 					.click(
 						e=>{
 							$selectedCard = $(e.currentTarget);
-							$selectedCard.find('h5, p, a')
+							$selectedCard.find('h5, p, h6')
 							.each(
 								(i,el)=>{
 
@@ -310,7 +328,7 @@ function addCard(titleId, titleValue, descriptionId, descriptionValue, linkId, h
 										$sliderDescription.val(el.innerText);
 
 									else if(el.id.startsWith('sliderLink'))
-										$sliderLink.val(el.href);
+										$sliderLink.val(el.innerText);
 								});
 							$btnSaveCard.prop('disabled', false);
 						});
@@ -322,7 +340,7 @@ function sliderToSend($el){
 	toSend.pageName = 'home_slider';
 	toSend.values = [];
 	$el.find('h5, p').each((i,el)=>toSend.values.push({nodeId: el.id, value: el.innerText, valueType: 'TEXT'}));
-	$el.find('a').each((i,el)=>toSend.values.push({nodeId: el.id, value: el.href, valueType: 'HREF'}));
+	$el.find('h6').each((i,el)=>toSend.values.push({nodeId: el.id, value: el.innerText, valueType: 'HREF'}));
 
 	return toSend;
 }

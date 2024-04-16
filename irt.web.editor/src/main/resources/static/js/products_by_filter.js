@@ -1,5 +1,3 @@
-$('#nb_products_by_filter').addClass('navbar-brand');
-
 const $chechBoxes = $('#productsContent input[type=checkbox]')
 const $filterSelect = $('#filterSelect').change(function(){
 

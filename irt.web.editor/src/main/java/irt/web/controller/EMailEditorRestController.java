@@ -35,6 +35,7 @@ public class EMailEditorRestController {
 
 		final EMailData eMailData = new EMailData(pageValues);
 		final List<WebContent> webContents = eMailData.toWebContents();
+		logger.error("{}", webContents);
 
 		if(!webContents.isEmpty())
 			webContentRepository.saveAll(webContents);

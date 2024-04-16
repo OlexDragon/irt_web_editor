@@ -1,5 +1,6 @@
 
 let $emailData = $('.email-data');
+let $hpToast = $('#hpToast');
 
 $('#saveEmailData').click(e=>{
 	if(!confirm("Do you want to save EMail Data?"))

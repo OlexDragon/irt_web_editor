@@ -14,7 +14,7 @@ $('.btn-delete').click(e=>{
 			window.location.reload();
 		})
 		.fail(function(error) {
-			window.console.errorr(error);
+			window.console.error(error);
   		});
 });
 $('.form-select').change(e=>{
@@ -29,6 +29,34 @@ $('.form-select').change(e=>{
 			}
 		})
 		.fail(function(error) {
-			window.console.errorr(error);
+			window.console.error(error);
   		});
 });
+const $modal = $('.modal');
+const $modalBody = $('.modal-body');
+$('div[data-id]').click(e=>{
+
+if(e.target.type != 'select-one')
+	$.post('rest/ips/connections', {ipId: e.currentTarget.dataset.id})
+	.done(data=>{
+
+		if(data){
+			$modalBody.empty();
+			let container = $('<table>', {clas: 'table'}).appendTo($modalBody);
+			data.forEach(connection=>{
+				container
+				.append(
+					$('<tr>')
+					.append($('<td>', {text: connection.id}))
+					.append($('<td>', {text: connection.connectTo}))
+					.append($('<td>', {text: connection.date}))
+				);
+			});
+			$modal.modal('show');
+		}else
+			alert("No Connection Entity");
+	})
+	.fail(function(error) {
+		window.console.error(error);
+	});
+})

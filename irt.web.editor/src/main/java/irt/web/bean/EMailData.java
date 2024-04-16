@@ -21,6 +21,8 @@ public class EMailData {
 	private String clientId;
 	private String objectId;
 	private String tenantId;
+	private String secretId;
+	private String clientSecret;	
 
 	public EMailData(PageValues pageValues) {
 
@@ -56,6 +58,14 @@ public class EMailData {
 					case "tenantId":
 						tenantId = c.getValue();
 						break;
+
+					case "secretId":
+						secretId = c.getValue();
+						break;
+
+					case "clientSecret":
+						clientSecret = c.getValue();
+						break;
 					}
 				});
 	}
@@ -71,11 +81,11 @@ public class EMailData {
 					switch (c.getNodeId()) {
 
 					case "emailTo":
-						to = Encoder.decode(c.getValue());
+						to = c.getValue();
 						break;
 
 					case "emailFrom":
-						from = Encoder.decode(c.getValue());
+						from = c.getValue();
 						break;
 
 					case "emailPassword":
@@ -83,15 +93,23 @@ public class EMailData {
 						break;
 
 					case "clientId":
-						clientId = Encoder.decode(c.getValue());
+						clientId = c.getValue();
 						break;
 
 					case "objectId":
-						objectId = Encoder.decode(c.getValue());
+						objectId = c.getValue();
 						break;
 
 					case "tenantId":
-						tenantId = Encoder.decode(c.getValue());
+						tenantId = c.getValue();
+						break;
+
+					case "secretId":
+						secretId = c.getValue();
+						break;
+
+					case "clientSecret":
+						clientSecret = c.getValue();
 						break;
 					}
 				});
@@ -101,12 +119,14 @@ public class EMailData {
 
 		List<WebContent> webContents = new ArrayList<>();
 
-		Optional.ofNullable(to)			.map(Encoder::encode).map(v->new WebContent("email", "emailTo", ValueType.TEXT, v, null)).ifPresent(webContents::add);
-		Optional.ofNullable(from)		.map(Encoder::encode).map(v->new WebContent("email", "emailFrom", ValueType.TEXT, v, null)).ifPresent(webContents::add);
-		Optional.ofNullable(clientId)	.map(Encoder::encode).map(v->new WebContent("email", "clientId", ValueType.TEXT, v, null)).ifPresent(webContents::add);
-		Optional.ofNullable(objectId)	.map(Encoder::encode).map(v->new WebContent("email", "objectId", ValueType.TEXT, v, null)).ifPresent(webContents::add);
-		Optional.ofNullable(tenantId)	.map(Encoder::encode).map(v->new WebContent("email", "tenantId", ValueType.TEXT, v, null)).ifPresent(webContents::add);
-		Optional.ofNullable(password)	.map(Encoder::encode).map(v->new WebContent("email", "emailPassword", ValueType.TEXT, v, null)).ifPresent(webContents::add);
+		Optional.ofNullable(to)								.map(v->new WebContent("email", "emailTo", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(from)							.map(v->new WebContent("email", "emailFrom", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(password)	.map(Encoder::encode).map(v->new WebContent("email", "emailPassword",ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(clientId)						.map(v->new WebContent("email", "clientId", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(objectId)						.map(v->new WebContent("email", "objectId", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(tenantId)						.map(v->new WebContent("email", "tenantId", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(secretId)						.map(v->new WebContent("email", "secretId", 	ValueType.TEXT, v))	.ifPresent(webContents::add);
+		Optional.ofNullable(clientSecret)					.map(v->new WebContent("email", "clientSecret",ValueType.TEXT, v))	.ifPresent(webContents::add);
 
 		return webContents;
 	}

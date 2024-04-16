@@ -1,5 +1,3 @@
-$('#nb_submenu').addClass('navbar-brand');
-
 $('#menuSelect').change(function(){
 
 	let $checkBox = $('#collapseFilters input').prop('checked', false).prop('disabled', false);

@@ -45,6 +45,7 @@ public class IrtWebEditorController {
 
 	@GetMapping
     String filterGroupPage(Model model){
+
 		final Iterable<Filter> filterGroups = filterRepository.findByOwnerIdIsNullOrderByFilterOrderAsc();
 		model.addAttribute("groups", filterGroups);
 		return "filter_group";

@@ -41,7 +41,7 @@ public class ImagesController {
 	private String productImagesPath;
 
 	@GetMapping("product/{productId}/{imageStatus}/{subfolder}/{fileName}")
-	public ResponseEntity<Resource> getImage(@PathVariable  Long productId, @PathVariable ImageStatus imageStatus, @PathVariable Long subfolder, @PathVariable String fileName) throws IOException{
+	public ResponseEntity<Resource> image(@PathVariable  Long productId, @PathVariable ImageStatus imageStatus, @PathVariable Long subfolder, @PathVariable String fileName) throws IOException{
 		logger.error("productId: {}; imageStatus: {}; subfolder: {}; fileName: {}", productId, imageStatus, subfolder, fileName);
 
 		final Path path = Paths.get(productImagesPath, productId.toString(), imageStatus.toString(), subfolder.toString(), fileName);
@@ -50,7 +50,7 @@ public class ImagesController {
 	}
 
 	@GetMapping("product/{productId}/{imageStatus}/{fileName}")
-	public ResponseEntity<Resource> getImage(@PathVariable  Long productId, @PathVariable ImageStatus imageStatus, @PathVariable String fileName) throws IOException{
+	public ResponseEntity<Resource> image(@PathVariable  Long productId, @PathVariable ImageStatus imageStatus, @PathVariable String fileName) throws IOException{
 		logger.error("productId: {}; imageStatus: {}; fileName: {}", productId, imageStatus, fileName);
 
 		final Path path = Paths.get(productImagesPath, productId.toString(), imageStatus.toString(), fileName);
@@ -61,7 +61,7 @@ public class ImagesController {
 	private ResponseEntity<Resource> getImage(final Path path) throws FileNotFoundException {
 		final File file = path.toFile();
 
-		HttpHeaders headers = getHeader();
+		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
 
 		if(!file.exists()) {
@@ -108,14 +108,6 @@ public class ImagesController {
 			}
 
 		};
-	}
-
-	private HttpHeaders getHeader() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-		headers.add("Pragma", "no-cache");
-		headers.add("Expires", "0");
-		return headers;
 	}
 
 	@RequiredArgsConstructor

@@ -1,5 +1,3 @@
-$('#nb_menu').addClass('navbar-brand');
-
 $('#newMenuNeme').on('input', function(){
 	enableSaveButton();
 })

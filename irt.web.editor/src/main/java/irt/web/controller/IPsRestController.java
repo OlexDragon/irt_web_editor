@@ -1,5 +1,7 @@
 package irt.web.controller;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,25 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import irt.web.bean.jpa.RemoteAddress.TrustStatus;
-import irt.web.bean.jpa.RemoteAddressRepository;
+import irt.web.bean.TrustStatus;
+import irt.web.bean.jpa.IpConnection;
+import irt.web.service.IpService;
 
 @RestController
-@RequestMapping("/rest/ips")
+@RequestMapping("rest/ips")
 public class IPsRestController {
 	private final Logger logger = LogManager.getLogger();
 
-	@Autowired private RemoteAddressRepository	remoteAddressRepository;
+	@Autowired private IpService ipService;
 
 	@PostMapping("delete")
     String savePageValues(@RequestParam String ip) throws JsonProcessingException {
 
-		return remoteAddressRepository.findById(ip)
+		return ipService.getIpAddress(ip)
 		.map(
 				ra->{
 					try {
 
-						remoteAddressRepository.delete(ra);
+						ipService.delete(ra);
 						return "IP address " + ip + " has been deleted.";
 
 					} catch (Exception e) {
@@ -42,15 +45,15 @@ public class IPsRestController {
 	}
 
 	@PostMapping("status")
-    String status(@RequestParam String ip, @RequestParam TrustStatus status) {
+    String setStatus(@RequestParam String ip, @RequestParam TrustStatus status) {
 
-		remoteAddressRepository.findById(ip)
+		ipService.getIpAddress(ip)
 		.map(
 				ra->{
 					ra.setTrustStatus(status);
 					try {
 
-						remoteAddressRepository.save(ra);
+						ipService.save(ra);
 						return "IP address status has been updated.";
 
 					} catch (Exception e) {
@@ -60,5 +63,10 @@ public class IPsRestController {
 					}
 				});
 		return ip;
+	}
+
+	@PostMapping("connections")
+    List<IpConnection> connections(@RequestParam Long ipId) {
+		return ipService.getConnections(ipId);
 	}
 }

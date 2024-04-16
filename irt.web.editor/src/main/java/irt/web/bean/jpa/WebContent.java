@@ -6,28 +6,26 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Data
 @IdClass(WebContentId.class)
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString
+@NoArgsConstructor @RequiredArgsConstructor @Getter @Setter @ToString
 public class WebContent{
 
-	@Id private String	pageName;
-	@Id private String	nodeId;
-	@Id
-	@Enumerated(EnumType.ORDINAL)
-	private ValueType valueType;
+	@Id @NonNull private String	pageName;
+	@Id @NonNull private String	nodeId;
+	@Id @NonNull @Enumerated(EnumType.ORDINAL) private ValueType valueType;
 
-	private String 	value;
+	@NonNull private String 	value;
 
-	@Setter
 	private VariableContent variableContent;
 
 	public WebContentId getId() {

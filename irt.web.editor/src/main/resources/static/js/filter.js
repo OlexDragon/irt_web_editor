@@ -1,5 +1,3 @@
-$('#nb_filters').addClass('navbar-brand');
-
 $('#groupSelect').change(function(){
 
 	$('#filterContent').empty();
