@@ -2,7 +2,8 @@ package irt.web.bean;
 
 public enum ConnectTo {
 
-	ABOUT_PAGE,
+	WEB_EMAIL,
 	GUI,
-	HIDDEN;
+	HIDDEN,
+	RMA;
 }
