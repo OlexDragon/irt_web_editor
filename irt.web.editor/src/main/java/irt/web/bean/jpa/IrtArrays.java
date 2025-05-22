@@ -15,9 +15,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "arrays")
 @NoArgsConstructor @RequiredArgsConstructor @Getter @Setter @EqualsAndHashCode(exclude = "content") @ToString
-public class Arrays{
+public class IrtArrays{
 
 	@NonNull
 	@EmbeddedId

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import irt.web.bean.ArrayObject;
-import irt.web.bean.jpa.Arrays;
+import irt.web.bean.jpa.IrtArrays;
 import irt.web.bean.jpa.ArraysId;
 import irt.web.bean.jpa.ArraysRepository;
 
@@ -25,11 +25,11 @@ public class ArraysReastComtroller {
 
 	@PostMapping("save")
 	String save(@RequestBody ArrayObject arrayObject) {
-		logger.error("{};", arrayObject);
+		logger.traceEntry("{};", arrayObject);
 
 		ArraysId id = new ArraysId(arrayObject.getName(), arrayObject.getType(), arrayObject.getSubtype());
-		final Optional<Arrays> byId = arraysRepository.findById(id );
-		Arrays arrays;
+		final Optional<IrtArrays> byId = arraysRepository.findById(id );
+		IrtArrays arrays;
 		if(byId.isPresent()) {
 
 			ArraysId aId = new ArraysId();
@@ -41,16 +41,16 @@ public class ArraysReastComtroller {
 				arrays = byId.get();
 
 			else {
-				arrays = new Arrays();
+				arrays = new IrtArrays();
 				arrays.setArrayId(aId);
 				arraysRepository.deleteById(id);
-				logger.error("Deleted: {}", aId);
+				logger.debug("Deleted: {}", aId);
 			}
 
 			arrays.setContent(arrayObject.getContent());
 
 		}else
-			arrays = new Arrays(id, arrayObject.getContent());
+			arrays = new IrtArrays(id, arrayObject.getContent());
 
 		arraysRepository.save(arrays);
 

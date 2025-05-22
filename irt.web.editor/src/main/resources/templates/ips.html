@@ -16,14 +16,15 @@
     </nav>
  	<div class="container-fluid ">
 		<div class="row">
+ 			<div class="col"><strong>ID</strong></div>
  			<div class="col"><strong>address</strong></div>
  			<div class="col"><strong>First Connection</strong></div>
  			<div class="col"><strong>Status</strong></div>
   			<div class="col-1"></div>
  		</div>
 		<div class="row" th:each="addr, stat : ${ipAddress}" data-th-data-id="${addr.id}">
- 			<div class="col-auto" th:text="${stat.count}">count</div>
- 			<div class="col" th:text="${addr.address}">address</div>
+ 			<div class="col-auto" th:text="${addr.id}">count</div>
+ 			<div class="col ip" th:text="${addr.address}">address</div>
  			<div class="col" th:text="${{addr.firstConnection}}">First Connection</div>
  			<div class="col">
  				<select class="form-select">

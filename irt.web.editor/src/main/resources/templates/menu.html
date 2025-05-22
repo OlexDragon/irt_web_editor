@@ -10,17 +10,18 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
 		<div class="container-fluid" th:fragment="menu(selection)">
-			<a id="nb_home_page" class="nav-item nav-link" href="home_page.html" th:href="@{/home_page}" th:classAppend="${selection eq 'home'}? 'navbar-brand'">Home Page</a>
-			<a id="nb_menu" class="nav-item nav-link" href="menu.html" th:href="@{/menu}" th:classAppend="${selection eq 'product menu'}? 'navbar-brand'">Product Main Menu</a>
-			<a id="nb_submenu" class="nav-item nav-link" href="submenu.html" th:href="@{/submenu}" th:classAppend="${selection eq 'product submenu'}? 'navbar-brand'">Product Sub Menu</a>
-			<a id="nb_filter_group" class="nav-item nav-link" href="filter_group.html" th:href="@{/}" th:classAppend="${selection eq 'filter group'}? 'navbar-brand'">Filter Group</a>
-			<a id="nb_filters" class="nav-item nav-link" href="filter.html" th:href="@{/filters}" th:classAppend="${selection eq 'filters'}? 'navbar-brand'">Filters</a>
-			<a id="nb_products" class="nav-item nav-link" href="products.html" th:href="@{/products}" th:classAppend="${selection eq 'products'}? 'navbar-brand'">Products</a>
-			<a id="nb_products_by_filter" class="nav-item nav-link" href="products_by_filter.html" th:href="@{/products_by_filter}" th:classAppend="${selection eq 'products by filter'}? 'navbar-brand'">Products By Filter</a>
-			<a id="nb_email" class="nav-item nav-link" href="email.html" th:href="@{/email}" th:classAppend="${selection eq 'email'}? 'navbar-brand'">E-Mail</a>
-			<a id="nb_email" class="nav-item nav-link" href="ips.html" th:href="@{/ips}" th:classAppend="${selection eq 'IPs'}? 'navbar-brand'">IPs</a>
-			<a id="nb_arrays" class="nav-item nav-link" href="arrays.html" th:href="@{/arrays}" th:classAppend="${selection eq 'arrays'}? 'navbar-brand'">Arrays</a>
-			<a id="nb_suport" class="nav-item nav-link" href="support.html" th:href="@{/support}" th:classAppend="${selection eq 'support'}? 'navbar-brand'">Support</a>
+			<a class="nav-item nav-link" href="home_page.html" th:href="@{/home_page}" th:classAppend="${selection eq 'home'}? 'navbar-brand'">Home Page</a>
+			<a class="nav-item nav-link" href="menu.html" th:href="@{/menu}" th:classAppend="${selection == null}? 'navbar-brand'">Product Main Menu</a>
+			<a class="nav-item nav-link" href="submenu.html" th:href="@{/submenu}" th:classAppend="${selection eq 'product submenu'}? 'navbar-brand'">Product Sub Menu</a>
+			<a class="nav-item nav-link" href="filter_group.html" th:href="@{/}" th:classAppend="${selection eq 'filter group'}? 'navbar-brand'">Filter Group</a>
+			<a class="nav-item nav-link" href="filter.html" th:href="@{/filters}" th:classAppend="${selection eq 'filters'}? 'navbar-brand'">Filters</a>
+			<a class="nav-item nav-link" href="products.html" th:href="@{/products}" th:classAppend="${selection eq 'products'}? 'navbar-brand'">Products</a>
+			<a class="nav-item nav-link" href="products_by_filter.html" th:href="@{/products_by_filter}" th:classAppend="${selection eq 'products by filter'}? 'navbar-brand'">Products By Filter</a>
+			<a class="nav-item nav-link" href="email.html" th:href="@{/email}" th:classAppend="${selection eq 'email'}? 'navbar-brand'">E-Mail</a>
+			<a class="nav-item nav-link" href="ips.html" th:href="@{/ips}" th:classAppend="${selection eq 'IPs'}? 'navbar-brand'">IPs</a>
+			<a class="nav-item nav-link" href="arrays.html" th:href="@{/arrays}" th:classAppend="${selection eq 'arrays'}? 'navbar-brand'">Arrays</a>
+			<a class="nav-item nav-link" href="serial_number.html" th:href="@{/sn}" th:classAppend="${selection eq 'sn'}? 'navbar-brand'">SN</a>
+			<a class="nav-item nav-link" href="support.html" th:href="@{/support}" th:classAppend="${selection eq 'support'}? 'navbar-brand'">Support</a>
 		</div>
     </nav>
  	<div class="container-fluid ">

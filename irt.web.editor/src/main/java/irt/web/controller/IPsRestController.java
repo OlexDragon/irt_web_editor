@@ -46,13 +46,14 @@ public class IPsRestController {
 
 	@PostMapping("status")
     String setStatus(@RequestParam String ip, @RequestParam TrustStatus status) {
+		logger.traceEntry("ip: {}; status: {}", ip, status);
 
 		ipService.getIpAddress(ip)
 		.map(
 				ra->{
-					ra.setTrustStatus(status);
 					try {
 
+						ra.setTrustStatus(status);
 						ipService.save(ra);
 						return "IP address status has been updated.";
 

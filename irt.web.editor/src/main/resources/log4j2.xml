@@ -25,7 +25,11 @@
     </Appenders>
 
     <Loggers>
-		<logger name="irt.web.controller.SupportRestComtroller" level="all" />
+<!-- 		<logger name="irt.web.controller.SupportRestComtroller" level="all" /> -->
+<!-- 		<logger name="irt.web.controller.IPsComtroller" level="all" /> -->
+<!-- 		<logger name="irt.web.controller.IPsRestController" level="all" /> -->
+<!-- 		<logger name="irt.web.controller.SerialNumberController" level="all" /> -->
+<!-- 		<logger name="irt.web.controller.SerialNumberRestController" level="all" /> -->
 
         <Root level="info">
             <AppenderRef ref="ConsoleAppender" />

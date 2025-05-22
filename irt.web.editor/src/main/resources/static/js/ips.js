@@ -20,7 +20,7 @@ $('.btn-delete').click(e=>{
 $('.form-select').change(e=>{
 
 	if(confirm('Are you sure you want to change the status of this address? - ' + e.currentTarget.value))
-		$.post('/rest/ips/status', {ip: e.currentTarget.parentElement.parentElement.firstElementChild.innerText, status: e.currentTarget.value})
+		$.post('/rest/ips/status', {ip: $(e.currentTarget.parentElement.parentElement).find('.ip').text(), status: e.currentTarget.value})
 		.done(message=>{
 
 			if(message){

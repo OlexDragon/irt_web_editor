@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,13 @@ import irt.web.bean.jpa.IpConnectionRepository;
 
 @Service
 public class IpService {
+	private final Logger logger = LogManager.getLogger();
 
 	@Autowired private IpAddressRepository	 	ipAddressRepository;
 	@Autowired private IpConnectionRepository	ipConnectionRepository;
 
 	public Optional<IpAddress> getIpAddress(String ip) {
+		logger.traceEntry("ip: {}", ip);
 		return Optional.ofNullable(ip).map(ipAddressRepository::findByAddress).map(o->o.orElseGet(createIpAddress(ip)));
 	}
 
@@ -30,11 +34,13 @@ public class IpService {
 		return ipConnectionRepository.findByIpIdAndConnectToAndDateGreaterThan(ipId, connectTo, startMonth);
 	}
 
-	public void save(IpAddress ipAddress) {
-		ipAddressRepository.save(ipAddress);
+	public void save(IpAddress ip) {
+		logger.traceEntry("ip: {}", ip);
+		ipAddressRepository.save(ip);
 	}
 
 	private Supplier<IpAddress> createIpAddress(String ip) {
+		logger.traceEntry("ip: {}", ip);
 		return ()->{
 
 			final IpAddress entity = new IpAddress();
@@ -52,8 +58,8 @@ public class IpService {
 		ipConnectionRepository.save(new IpConnection(ipId, LocalDateTime.now(), connectTo));
 	}
 
-	public Iterable<IpAddress> findAll() {
-		return ipAddressRepository.findAll();
+	public Iterable<IpAddress> find(String address) {
+		return Optional.ofNullable(address).map(ip->ipAddressRepository.findByAddressOrTrustStatus(ip, TrustStatus.IRT)).orElseGet(()->ipAddressRepository.findTop100ByOrderByIdDesc());
 	}
 
 	public void delete(IpAddress ipAddress) {
